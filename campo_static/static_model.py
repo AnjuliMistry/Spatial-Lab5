@@ -11,6 +11,9 @@ class FoodEnvironment(pcrfw.StaticModel):
         foodenv = campo.Campo()
         foodstores = foodenv.add_phenomenon("foodstores")
         foodstores.add_property_set("frontdoor", "foodstores_frontdoor.csv")
+        foodstores.frontdoor.lower =-0.5
+        foodstores.frontdoor.upper = 0.5
+        foodstores.frontdoor.x_initial = campo.uniform(foodstores.frontdoor.lower, foodstores.frontdoor.upper)
         foodenv.create_dataset("food_environment.lue")
         foodenv.write()
 

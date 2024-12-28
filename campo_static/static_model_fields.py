@@ -18,8 +18,21 @@ class FoodEnvironment(pcrfw.StaticModel):
         foodstores.frontdoor.upper = 0.5
         foodstores.frontdoor.x_initial = campo.uniform(foodstores.frontdoor.lower, foodstores.frontdoor.upper)
 
+        foodstores.add_property_set("surrounding","foodstores_surrounding.csv")
+        foodstores.surrounding.lower =3
+        foodstores.surrounding.upper =12
+        foodstores.surrounding.c = campo.uniform(foodstores.surrounding.lower,foodstores.surrounding.upper)
+        foodstores.surrounding.start_locations = campo.feature_to_raster(foodstores.surrounding, foodstores.frontdoor)
+
+        foodstores.surrounding.initial_friction = 0
+        foodstores.surrounding.friction =1
+        foodstores.surrounding.distance= campo.spread(foodstores.surrounding.start_locations,foodstores.surrounding.initial_friction,foodstores.surrounding.friction)
+        foodstores.surrounding.area = foodstores.surrounding.distance <=200
+
         foodenv.create_dataset("food_environment.lue")
         foodenv.write()
+
+        
 
 
 if __name__ == "__main__":

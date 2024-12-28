@@ -18,6 +18,14 @@ class FoodEnvironment(pcrfw.StaticModel):
         foodstores.frontdoor.upper = 0.5
         foodstores.frontdoor.x_initial = campo.uniform(foodstores.frontdoor.lower, foodstores.frontdoor.upper)
 
+        foodstores.frontdoor.lower_inc=0.0
+        foodstores.frontdoor.upper_inc =0.1
+        foodstores.frontdoor.increment = campo.uniform(foodstores.frontdoor.lower_inc, foodstores.frontdoor.upper_inc)
+
+        foodstores.frontdoor.x_value = foodstores.frontdoor.x_initial + foodstores.frontdoor.increment
+        foodstores.frontdoor.threshold=0.0
+        foodstores.frontdoor.healthy = foodstores.frontdoor.x_value <=foodstores.frontdoor.threshold
+
         foodenv.create_dataset("food_environment.lue")
         foodenv.write()
 
