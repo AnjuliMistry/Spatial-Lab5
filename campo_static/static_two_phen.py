@@ -27,7 +27,7 @@ class FoodEnvironment(pcrfw.StaticModel):
         foodstores.surrounding.friction = 1
         foodstores.surrounding.distance = campo.spread(foodstores.surrounding.start_locations,
                                           foodstores.surrounding.initial_friction, foodstores.surrounding.friction)
-        foodstores.surrounding.area = foodstores.surrounding.distance <= 250
+        foodstores.surrounding.area = foodstores.surrounding.distance <= 500
 
         foodstores.surrounding.high = 1.0
         foodstores.surrounding.low = 0.0000001
